@@ -7,18 +7,15 @@ public class PlayerController : MonoBehaviour
     public Transform cameraTransform;
 
     public float speed = 5f;
+    public float runMultiplier = 2;
     public float turnSmoothTime = 0.1f;
+    public KeyCode runKey = KeyCode.LeftShift;
 
     float horizontal;
     float vertical;
     float turnSmoothVelocity;
 
-    bool allowMove;
-
-    void Start()
-    {
-        allowMove = true;
-    }
+    public bool allowMove = true;
 
     void Update()
     {
@@ -35,11 +32,17 @@ public class PlayerController : MonoBehaviour
 
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
+        bool moving = direction.magnitude >= 0.1f;
+        bool running = Input.GetKey(runKey);
+
+        float movementSpeed = running? speed * runMultiplier : speed;
+
+        animator?.SetBool("Running", running);
+        animator?.SetBool("Walking", moving);
+
         // Move only if there is input
-        if (direction.magnitude >= 0.1f)
+        if (moving)
         {
-            if(animator != null)
-                animator.SetBool("Walking", true);
             // Calculate target angle based on the camera's forward direction
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
 
@@ -51,12 +54,7 @@ public class PlayerController : MonoBehaviour
 
             // Move in the direction the player is facing
             Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            controller.Move(moveDirection.normalized * speed * Time.deltaTime);
-        }
-        else
-        {
-            if(animator != null)
-                animator.SetBool("Walking", false);
+            controller.Move(moveDirection.normalized * movementSpeed * Time.deltaTime);
         }
 
         // Apply gravity
