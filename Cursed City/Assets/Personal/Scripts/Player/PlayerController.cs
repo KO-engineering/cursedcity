@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     public float runMultiplier = 2;
     public float turnSmoothTime = 0.1f;
     public KeyCode runKey = KeyCode.LeftShift;
+    public KeyCode jumpKey = KeyCode.Space;
+    public KeyCode punchKey = KeyCode.Q;
+    public KeyCode crouchKey = KeyCode.LeftMeta;
 
     float horizontal;
     float vertical;
@@ -34,11 +37,17 @@ public class PlayerController : MonoBehaviour
 
         bool moving = direction.magnitude >= 0.1f;
         bool running = Input.GetKey(runKey);
+        bool jumping = Input.GetKey(jumpKey);
+        bool punching = Input.GetKey(punchKey);
+        bool crouching = Input.GetKey(crouchKey);
 
         float movementSpeed = running? speed * runMultiplier : speed;
 
         animator?.SetBool("Running", running);
         animator?.SetBool("Walking", moving);
+        animator?.SetBool("Jumping", jumping);
+        animator?.SetBool("Punching", punching);
+        animator?.SetBool("Crouching", crouching);
 
         // Move only if there is input
         if (moving)
