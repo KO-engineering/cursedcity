@@ -45,10 +45,12 @@ public class PlayerController : MonoBehaviour
 
         animator?.SetBool("Running", running);
         animator?.SetBool("Walking", moving);
-        animator?.SetBool("Jumping", jumping);
         animator?.SetBool("Punching", punching);
         animator?.SetBool("Crouching", crouching);
-
+        if(jumping){
+            animator.SetTrigger("Jumping");
+            jumping = false;
+        }
         // Move only if there is input
         if (moving)
         {
