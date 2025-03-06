@@ -16,6 +16,7 @@ public class NPCManager : Singleton<NPCManager>
     public Transform defaultSpawn;
     public List<NavMeshSurface> navMeshSurfaces= new List<NavMeshSurface>();
     public Transform npcPathParent;
+    public float radius = 1;
     [ReadOnly] public List<Transform> npcPaths = new List<Transform>();
     //public Transform npcDrunkPathParent;
     //[ReadOnly] public List<Transform> npcDrunkPaths = new List<Transform>();
@@ -81,7 +82,7 @@ public class NPCManager : Singleton<NPCManager>
     public Vector3 GetRandomPositionOnNavMesh()
     {
         NavMeshSurface selectedSurface = navMeshSurfaces[Random.Range(0, navMeshSurfaces.Count)];
-        Vector3 size = selectedSurface.size;
+        Vector3 size = selectedSurface.size * radius;
 
         Vector3 randomOffset = new Vector3(
             Random.Range(-size.x / 2f, size.x / 2f),
