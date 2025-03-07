@@ -12,22 +12,31 @@ public class PlayerController : Singleton<PlayerController>
     public KeyCode runKey = KeyCode.LeftShift;
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode punchKey = KeyCode.Q;
-    public KeyCode crouchKey = KeyCode.LeftMeta;
+    public KeyCode crouchKey = KeyCode.LeftControl;
+    public KeyCode aimKey = KeyCode.Mouse1;
 
     float horizontal;
     float vertical;
     float turnSmoothVelocity;
+    bool isAiming;
 
     public bool allowMove = true;
 
     void Update()
     {
+        if (Input.GetKeyDown(aimKey))
+        {
+            isAiming = !isAiming;
+            CameraOrbit.Instance.AllowAimMode(isAiming);
+            PlayerShooting.Instance.ActivateAimRig(isAiming);
+        }
         if (allowMove)
         {
             // Get input
             horizontal = Input.GetAxisRaw("Horizontal");
             vertical = Input.GetAxisRaw("Vertical");
-        } else
+        }
+        else
         {
             horizontal = 0;
             vertical = 0;
@@ -41,31 +50,48 @@ public class PlayerController : Singleton<PlayerController>
         bool punching = Input.GetKey(punchKey);
         bool crouching = Input.GetKey(crouchKey);
 
-        float movementSpeed = running? speed * runMultiplier : speed;
+        float movementSpeed = running ? speed * runMultiplier : speed;
 
         animator?.SetBool("Running", running);
         animator?.SetBool("Walking", moving);
         animator?.SetBool("Punching", punching);
         animator?.SetBool("Crouching", crouching);
-        if(jumping){
+        if (jumping)
+        {
             animator.SetTrigger("Jumping");
             jumping = false;
         }
-        // Move only if there is input
+
         if (moving)
         {
-            // Calculate target angle based on the camera's forward direction
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
+            if (isAiming == false)
+            {
+                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
 
-            // Smooth the rotation
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+                // Smooth the rotation
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
 
-            // Rotate the player
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+                // Rotate the player
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-            // Move in the direction the player is facing
-            Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            controller.Move(moveDirection.normalized * movementSpeed * Time.deltaTime);
+                // Move in the direction the player is facing
+                Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+                controller.Move(moveDirection.normalized * movementSpeed * Time.deltaTime);
+            }
+            else
+            {
+                Vector3 moveDirection = cameraTransform.right * direction.x + cameraTransform.forward * direction.z;
+                moveDirection.y = 0;
+                controller.Move(moveDirection.normalized * movementSpeed * Time.deltaTime);
+            }
+        }
+
+        if (isAiming)
+        {
+            Vector3 cameraFwd = cameraTransform.forward;
+            cameraFwd.y = 0;
+
+            transform.rotation = Quaternion.LookRotation(cameraFwd);
         }
 
         // Apply gravity
