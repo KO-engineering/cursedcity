@@ -770,5 +770,11 @@ public class PrometeoCarController : MonoBehaviour
         driftingAxis = 0f;
       }
     }
+    void OnCollisionEnter(Collision other)
+    {
+      if(other.gameObject.TryGetComponent<Health>(out Health h) && carSpeed > 0f){
+        h.ChangeHealth(-100);
+      }
+    }
 
 }

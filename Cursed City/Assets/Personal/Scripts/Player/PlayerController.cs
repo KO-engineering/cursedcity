@@ -1,6 +1,6 @@
 using UnityEngine;
-
-public class PlayerController : MonoBehaviour
+using NaughtyAttributes;
+public class PlayerController : Singleton<PlayerController>
 {
     public Animator animator;
     public CharacterController controller;
