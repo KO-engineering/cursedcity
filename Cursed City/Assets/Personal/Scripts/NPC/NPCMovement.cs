@@ -14,6 +14,8 @@ public class NPCMovement : MonoBehaviour
     [ReadOnly] public int randomIndex;
     [ReadOnly] public Transform targetTransform;
 
+    private bool waitingForTrafficLight = false;
+
     void Start()
     {
         randomNum = Random.Range(0, 100);
@@ -30,18 +32,21 @@ public class NPCMovement : MonoBehaviour
     [Button("Wander")]
     public void WanderAgent()
     {
-        navMeshAgent.isStopped = false;
+        if (navMeshAgent != null && navMeshAgent.isActiveAndEnabled)
+            navMeshAgent.isStopped = false;
     }
 
     [Button("Stop")]
     public void StopAgent()
     {
-        navMeshAgent.isStopped = true;
+        if (navMeshAgent != null && navMeshAgent.isActiveAndEnabled)
+            navMeshAgent.isStopped = true;
     }
 
     void Update()
     {
-        animator.SetFloat("Speed", navMeshAgent.isStopped || navMeshAgent.hasPath == false? 0 : 0.5f);
+        if (animator != null && navMeshAgent != null && navMeshAgent.isActiveAndEnabled)
+            animator.SetFloat("Speed", navMeshAgent.isStopped || navMeshAgent.hasPath == false ? 0 : 0.5f);
     }
 
     IEnumerator MoveToNextTarget()
@@ -62,18 +67,68 @@ public class NPCMovement : MonoBehaviour
             //randomIndex = Random.Range(0, manager.npcPaths.Count);
             //targetTransform = manager.npcPaths[randomIndex];
             //}
-        
-            navMeshAgent.SetDestination(NPCManager.Instance.GetRandomPositionOnNavMesh());
-
-            // Wait until the NPC has reached the target
-            while (navMeshAgent.remainingDistance > stoppingDistance)
+            
+            if (navMeshAgent != null && navMeshAgent.isActiveAndEnabled)
+                navMeshAgent.SetDestination(NPCManager.Instance.GetRandomPositionOnNavMesh());
+            
+            // Wait until the NPC has reached the target or is stopped by a traffic light
+            while (navMeshAgent != null && navMeshAgent.isActiveAndEnabled && navMeshAgent.remainingDistance > stoppingDistance)
             {
-                if(!navMeshAgent.enabled) yield break;
+                if (navMeshAgent == null || !navMeshAgent.isActiveAndEnabled) 
+                    yield break;
+                
+                // If we're waiting for a traffic light
+                if (waitingForTrafficLight)
+                {
+                    // Simply wait a bit and then resume - the traffic light system will handle the rest
+                    yield return new WaitForSeconds(5f);
+                    waitingForTrafficLight = false;
+                    
+                    if (navMeshAgent != null && navMeshAgent.isActiveAndEnabled)
+                        navMeshAgent.isStopped = false;
+                }
+                
                 yield return null;
             }
-
-            yield return null;
-
+            
+            yield return new WaitForSeconds(1f);
+        }
+    }
+    
+    // Called when the NPC enters a traffic light's side collider
+    void OnTriggerEnter(Collider other)
+    {
+        // Simple tag check instead of complex component lookups
+        if (other.CompareTag("TrafficLightTrigger"))
+        {
+            // Check if this is a red light
+            TrafficSystem trafficSystem = other.GetComponentInParent<TrafficSystem>();
+            if (trafficSystem != null)
+            {
+                // Simplified check - just assume we should stop
+                waitingForTrafficLight = true;
+                
+                if (navMeshAgent != null && navMeshAgent.isActiveAndEnabled)
+                {
+                    navMeshAgent.isStopped = true;
+                    
+                    if (animator != null)
+                        animator.SetFloat("Speed", 0);
+                }
+            }
+        }
+    }
+    
+    // Called when the NPC exits a traffic light's side collider
+    void OnTriggerExit(Collider other)
+    {
+        // Simple tag check
+        if (other.CompareTag("TrafficLightTrigger"))
+        {
+            waitingForTrafficLight = false;
+            
+            if (navMeshAgent != null && navMeshAgent.isActiveAndEnabled)
+                navMeshAgent.isStopped = false;
         }
     }
 }

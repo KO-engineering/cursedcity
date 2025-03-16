@@ -7,72 +7,39 @@ public class TrafficSystem : MonoBehaviour
     [System.Serializable]
     public class TrafficLightElement
     {
-        // Front side lights
-        public GameObject redLightFront;
-        public GameObject yellowLightFront;
-        public GameObject greenLightFront;
-        
-        // Back side lights
-        public GameObject redLightBack;
-        public GameObject yellowLightBack;
-        public GameObject greenLightBack;
-        
-        // Colliders
+        public GameObject redLight;
+        public GameObject yellowLight;
+        public GameObject greenLight;
         public BoxCollider leftSideCollider;
         public BoxCollider rightSideCollider;
         public BoxCollider frontCollider;
         public BoxCollider backCollider;
-        
-        // Status variables
         public bool isGreen = false;
         public bool npcWaiting = false;
         public bool carInFront = false;
         public bool carInBack = false;
         
+        
         public void SetRed()
         {
-            // Activate red lights
-            redLightFront.SetActive(true);
-            redLightBack.SetActive(true);
-            
-            // Deactivate other lights
-            yellowLightFront.SetActive(false);
-            yellowLightBack.SetActive(false);
-            greenLightFront.SetActive(false);
-            greenLightBack.SetActive(false);
-            
+            redLight.SetActive(true);
+            yellowLight.SetActive(false);
+            greenLight.SetActive(false);
             isGreen = false;
         }
         
         public void SetYellow()
         {
-            // Deactivate red lights
-            redLightFront.SetActive(false);
-            redLightBack.SetActive(false);
-            
-            // Activate yellow lights
-            yellowLightFront.SetActive(true);
-            yellowLightBack.SetActive(true);
-            
-            // Deactivate green lights
-            greenLightFront.SetActive(false);
-            greenLightBack.SetActive(false);
+            redLight.SetActive(false);
+            yellowLight.SetActive(true);
+            greenLight.SetActive(false);
         }
         
         public void SetGreen()
         {
-            // Deactivate red lights
-            redLightFront.SetActive(false);
-            redLightBack.SetActive(false);
-            
-            // Deactivate yellow lights
-            yellowLightFront.SetActive(false);
-            yellowLightBack.SetActive(false);
-            
-            // Activate green lights
-            greenLightFront.SetActive(true);
-            greenLightBack.SetActive(true);
-            
+            redLight.SetActive(false);
+            yellowLight.SetActive(false);
+            greenLight.SetActive(true);
             isGreen = true;
         }
     }
