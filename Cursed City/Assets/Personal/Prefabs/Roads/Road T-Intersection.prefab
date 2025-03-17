@@ -186,7 +186,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 319475192355523788}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -291,7 +291,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 360507138013315780}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -414,12 +414,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trafficLights:
-  - redLightFront: {fileID: 3491812795895192939}
-    yellowLightFront: {fileID: 66727802999864973}
-    greenLightFront: {fileID: 1212973526269814165}
-    redLightBack: {fileID: 7639422610926521620}
-    yellowLightBack: {fileID: 6837798503867520010}
-    greenLightBack: {fileID: 1100784156909023896}
+  - redLight: {fileID: 0}
+    yellowLight: {fileID: 0}
+    greenLight: {fileID: 0}
     leftSideCollider: {fileID: 3965439746440293791}
     rightSideCollider: {fileID: 8328197124986137847}
     frontCollider: {fileID: 2502073727794708910}
@@ -428,12 +425,9 @@ MonoBehaviour:
     npcWaiting: 0
     carInFront: 0
     carInBack: 0
-  - redLightFront: {fileID: 5071060322541853187}
-    yellowLightFront: {fileID: 3245390231179308213}
-    greenLightFront: {fileID: 5473347644777184332}
-    redLightBack: {fileID: 2128075736128755069}
-    yellowLightBack: {fileID: 553302741134425913}
-    greenLightBack: {fileID: 3653616257942583549}
+  - redLight: {fileID: 0}
+    yellowLight: {fileID: 0}
+    greenLight: {fileID: 0}
     leftSideCollider: {fileID: 5682502212391994521}
     rightSideCollider: {fileID: 5982293265066700470}
     frontCollider: {fileID: 1933925053780660288}
@@ -442,12 +436,9 @@ MonoBehaviour:
     npcWaiting: 0
     carInFront: 0
     carInBack: 0
-  - redLightFront: {fileID: 3627903446592930126}
-    yellowLightFront: {fileID: 6901022314342688969}
-    greenLightFront: {fileID: 1491074406874349522}
-    redLightBack: {fileID: 5661692598816160306}
-    yellowLightBack: {fileID: 7790703199193358319}
-    greenLightBack: {fileID: 6973516023790718675}
+  - redLight: {fileID: 0}
+    yellowLight: {fileID: 0}
+    greenLight: {fileID: 0}
     leftSideCollider: {fileID: 3288565442799111883}
     rightSideCollider: {fileID: 7821432408666642933}
     frontCollider: {fileID: 153716676925141398}
@@ -671,7 +662,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1744386756481829994}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -859,7 +850,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2171097502561466169}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -964,7 +955,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2435999818885546054}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1473,7 +1464,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3463388861850765111}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3756,38 +3747,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d81538e93c4544bd084c65006793cc43, type: 3}
---- !u!1 &66727802999864973 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7632195194334290344, guid: d81538e93c4544bd084c65006793cc43, type: 3}
-  m_PrefabInstance: {fileID: 7567755477188075301}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1100784156909023896 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7368123018888834493, guid: d81538e93c4544bd084c65006793cc43, type: 3}
-  m_PrefabInstance: {fileID: 7567755477188075301}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1212973526269814165 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8778440896129284784, guid: d81538e93c4544bd084c65006793cc43, type: 3}
-  m_PrefabInstance: {fileID: 7567755477188075301}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3491812795895192939 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6445628249366118990, guid: d81538e93c4544bd084c65006793cc43, type: 3}
-  m_PrefabInstance: {fileID: 7567755477188075301}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6837798503867520010 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4026970133098875695, guid: d81538e93c4544bd084c65006793cc43, type: 3}
-  m_PrefabInstance: {fileID: 7567755477188075301}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7492089229973225029 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1080634076112265568, guid: d81538e93c4544bd084c65006793cc43, type: 3}
-  m_PrefabInstance: {fileID: 7567755477188075301}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7639422610926521620 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 216946706792780337, guid: d81538e93c4544bd084c65006793cc43, type: 3}
   m_PrefabInstance: {fileID: 7567755477188075301}
   m_PrefabAsset: {fileID: 0}
