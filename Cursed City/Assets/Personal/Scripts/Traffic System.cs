@@ -1,191 +1,225 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class TrafficSystem : MonoBehaviour
 {
     [System.Serializable]
     public class TrafficLightElement
     {
-        public GameObject redLight;
-        public GameObject yellowLight;
-        public GameObject greenLight;
-        public BoxCollider leftSideCollider;
-        public BoxCollider rightSideCollider;
-        public BoxCollider frontCollider;
-        public BoxCollider backCollider;
-        public bool isGreen = false;
-        public bool npcWaiting = false;
-        public bool carInFront = false;
-        public bool carInBack = false;
+        public string name;
+        [Header("Front Light")]
+        public GameObject frontRedLight;
+        public GameObject frontYellowLight;
+        public GameObject frontGreenLight;
         
+        [Header("Back Light")]
+        public GameObject backRedLight;
+        public GameObject backYellowLight;
+        public GameObject backGreenLight;
+        
+       [Header("Detection")]
+        public List<SphereCollider> pedestrianDetectors = new List<SphereCollider>();
+        
+        [Header("Sidewalk Points")]
+        public List<Transform> sidewalkPoints = new List<Transform>();
+        
+        [HideInInspector]
+        public TrafficLightState currentState = TrafficLightState.Red;
+        
+        private Dictionary<NPCMovement, Vector3> affectedNPCs = new Dictionary<NPCMovement, Vector3>();
         
         public void SetRed()
         {
-            redLight.SetActive(true);
-            yellowLight.SetActive(false);
-            greenLight.SetActive(false);
-            isGreen = false;
+
+            frontRedLight.SetActive(true);
+            frontYellowLight.SetActive(false);
+            frontGreenLight.SetActive(false);
+            
+
+            backRedLight.SetActive(true);
+            backYellowLight.SetActive(false);
+            backGreenLight.SetActive(false);
+            
+            currentState = TrafficLightState.Red;
+            if (currentState != TrafficLightState.Yellow)
+            {
+                MoveNPCsToSidewalk();
+            }
         }
         
         public void SetYellow()
         {
-            redLight.SetActive(false);
-            yellowLight.SetActive(true);
-            greenLight.SetActive(false);
+            frontRedLight.SetActive(false);
+            frontYellowLight.SetActive(true);
+            frontGreenLight.SetActive(false);
+            backRedLight.SetActive(false);
+            backYellowLight.SetActive(true);
+            backGreenLight.SetActive(false);
+            
+            currentState = TrafficLightState.Yellow;
+            MoveNPCsToSidewalk();
         }
         
         public void SetGreen()
         {
-            redLight.SetActive(false);
-            yellowLight.SetActive(false);
-            greenLight.SetActive(true);
-            isGreen = true;
+            frontRedLight.SetActive(false);
+            frontYellowLight.SetActive(false);
+            frontGreenLight.SetActive(true);
+            backRedLight.SetActive(false);
+            backYellowLight.SetActive(false);
+            backGreenLight.SetActive(true);
+            
+            currentState = TrafficLightState.Green;
+            ResumeNPCs();
+        }
+        
+        private void MoveNPCsToSidewalk()
+        {
+            if (sidewalkPoints.Count == 0)
+            {
+                Debug.LogWarning("No sidewalk points assigned to traffic light: " + name);
+                return;
+            }
+            
+            foreach (SphereCollider detector in pedestrianDetectors)
+            {
+                Collider[] colliders = Physics.OverlapSphere(
+                    detector.transform.position, 
+                    detector.radius * Mathf.Max(
+                        detector.transform.lossyScale.x,
+                        detector.transform.lossyScale.y,
+                        detector.transform.lossyScale.z
+                    )
+                );
+                
+                foreach (Collider col in colliders)
+                {
+                    NPCMovement npc = col.GetComponent<NPCMovement>();
+                    if (npc != null)
+                    {
+                        if (!affectedNPCs.ContainsKey(npc))
+                        {
+                            NavMeshAgent originalAgent = npc.GetComponent<NavMeshAgent>();
+                            if (originalAgent != null && originalAgent.hasPath)
+                            {
+                                affectedNPCs[npc] = originalAgent.destination;
+                            }
+                            else
+                            {
+                                affectedNPCs[npc] = npc.transform.position;
+                            }
+                        }
+                        Transform nearestSidewalk = GetNearestSidewalkPoint(npc.transform.position);
+                        NavMeshAgent sidewalkAgent = npc.GetComponent<NavMeshAgent>();
+                        if (sidewalkAgent != null)
+                        {
+                            sidewalkAgent.isStopped = false; 
+                            sidewalkAgent.SetDestination(nearestSidewalk.position);
+                        }
+                    }
+                }
+            }
+        }
+        
+        private void ResumeNPCs()
+        {
+            foreach (KeyValuePair<NPCMovement, Vector3> npcPair in affectedNPCs)
+            {
+                NPCMovement npc = npcPair.Key;
+                if (npc != null)
+                {
+                    NavMeshAgent resumeAgent = npc.GetComponent<NavMeshAgent>();
+                    if (resumeAgent != null)
+                    {
+                        resumeAgent.SetDestination(npcPair.Value);
+                        npc.WanderAgent(); 
+                    }
+                }
+            }
+            affectedNPCs.Clear();
+        }
+        
+        private Transform GetNearestSidewalkPoint(Vector3 position)
+        {
+            Transform nearest = sidewalkPoints[0];
+            float minDistance = Vector3.Distance(position, nearest.position);
+            
+            for (int i = 1; i < sidewalkPoints.Count; i++)
+            {
+                float distance = Vector3.Distance(position, sidewalkPoints[i].position);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    nearest = sidewalkPoints[i];
+                }
+            }
+            
+            return nearest;
         }
     }
     
-    public List<TrafficLightElement> trafficLights = new List<TrafficLightElement>();
-    private Dictionary<BoxCollider, int> colliderToLightIndex = new Dictionary<BoxCollider, int>();
+    public enum TrafficLightState
+    {
+        Red,
+        Yellow,
+        Green
+    }
     
-    // Start is called before the first frame update
+    [Header("Traffic Light Settings")]
+    public List<TrafficLightElement> trafficLights = new List<TrafficLightElement>();
+    
+    [Header("Timing Settings")]
+    public float greenLightDuration = 10.0f;
+    public float yellowLightDuration = 3.0f;
+    public float redLightDuration = 15.0f;
+    
     void Start()
     {
-        // Initialize all traffic lights to red
+        foreach (TrafficLightElement light in trafficLights)
+        {
+            light.SetRed();
+        }
+        
         for (int i = 0; i < trafficLights.Count; i++)
         {
-            TrafficLightElement light = trafficLights[i];
-            light.SetRed();
-            
-            // Map colliders to their corresponding traffic light indices
-            colliderToLightIndex[light.leftSideCollider] = i;
-            colliderToLightIndex[light.rightSideCollider] = i;
-            colliderToLightIndex[light.frontCollider] = i;
-            colliderToLightIndex[light.backCollider] = i;
-            
-            // Start monitoring this traffic light
-            StartCoroutine(ManageTrafficLight(i));
+            StartCoroutine(TrafficLightCycle(i));
         }
     }
     
-    // Update is called once per frame
-    void Update()
-    {
-        // Main update loop - could add additional global control logic here
-    }
-    
-    IEnumerator ManageTrafficLight(int index)
+    IEnumerator TrafficLightCycle(int index)
     {
         TrafficLightElement light = trafficLights[index];
         
         while (true)
         {
-            // If no NPC is waiting, wait for 3 seconds and then change to green
-            if (!light.npcWaiting)
-            {
-                yield return new WaitForSeconds(3.0f);
-                if (!light.npcWaiting)
-                {
-                    light.SetGreen();
-                    yield return new WaitForSeconds(10.0f); // Green for 10 seconds
-                    light.SetYellow();
-                    yield return new WaitForSeconds(1.0f);
-                    light.SetRed();
-                }
-            }
-            // If an NPC is waiting
-            else
-            {
-                // Check if there are any cars
-                if (!light.carInFront && !light.carInBack)
-                {
-                    // No cars, change to green immediately
-                    light.SetGreen();
-                    yield return new WaitForSeconds(10.0f); // Green for 10 seconds
-                    light.SetYellow();
-                    yield return new WaitForSeconds(1.0f);
-                    light.SetRed();
-                }
-                else
-                {
-                    // Cars present, wait for them to pass
-                    yield return new WaitForSeconds(3.0f);
-                    light.SetYellow();
-                    yield return new WaitForSeconds(1.0f);
-                    light.SetRed();
-                    
-                    // Wait until no more cars
-                    yield return new WaitUntil(() => !light.carInFront && !light.carInBack);
-                    yield return new WaitForSeconds(1.0f); // Buffer time
-                    
-                    light.SetGreen();
-                    yield return new WaitForSeconds(10.0f); // Green for 10 seconds
-                    light.SetYellow();
-                    yield return new WaitForSeconds(1.0f);
-                    light.SetRed();
-                }
-            }
+            light.SetRed();
+            yield return new WaitForSeconds(redLightDuration);
             
-            yield return null; // Wait a frame before checking again
+            light.SetGreen();
+            yield return new WaitForSeconds(greenLightDuration);
+            
+            light.SetYellow();
+            yield return new WaitForSeconds(yellowLightDuration);
         }
     }
     
-    // Methods to be called by triggers/colliders
-    
-    public void OnNPCEnterSideArea(Collider sideCollider)
+    public bool IsTrafficLightGreen(int index)
     {
-        if (colliderToLightIndex.TryGetValue(sideCollider as BoxCollider, out int index))
+        if (index >= 0 && index < trafficLights.Count)
         {
-            trafficLights[index].npcWaiting = true;
+            return trafficLights[index].currentState == TrafficLightState.Green;
         }
+        return false;
     }
     
-    public void OnNPCExitSideArea(Collider sideCollider)
+    public TrafficLightState GetTrafficLightState(int index)
     {
-        if (colliderToLightIndex.TryGetValue(sideCollider as BoxCollider, out int index))
+        if (index >= 0 && index < trafficLights.Count)
         {
-            trafficLights[index].npcWaiting = false;
+            return trafficLights[index].currentState;
         }
-    }
-    
-    public void OnCarEnterFrontArea(Collider frontCollider)
-    {
-        if (colliderToLightIndex.TryGetValue(frontCollider as BoxCollider, out int index))
-        {
-            trafficLights[index].carInFront = true;
-        }
-    }
-    
-    public void OnCarExitFrontArea(Collider frontCollider)
-    {
-        if (colliderToLightIndex.TryGetValue(frontCollider as BoxCollider, out int index))
-        {
-            trafficLights[index].carInFront = false;
-        }
-    }
-    
-    public void OnCarEnterBackArea(Collider backCollider)
-    {
-        if (colliderToLightIndex.TryGetValue(backCollider as BoxCollider, out int index))
-        {
-            trafficLights[index].carInBack = true;
-        }
-    }
-    
-    public void OnCarExitBackArea(Collider backCollider)
-    {
-        if (colliderToLightIndex.TryGetValue(backCollider as BoxCollider, out int index))
-        {
-            trafficLights[index].carInBack = false;
-        }
-    }
-    
-    // You can call this from NPC scripts to check if they should wait
-    public bool ShouldNPCWait(Collider sideCollider)
-    {
-        if (colliderToLightIndex.TryGetValue(sideCollider as BoxCollider, out int index))
-        {
-            return !trafficLights[index].isGreen;
-        }
-        return true; // Default to waiting if collider not found
+        return TrafficLightState.Red; 
     }
 }

@@ -6,7 +6,6 @@ using UnityEngine.Animations.Rigging;
 
 public class PlayerShooting : Singleton<PlayerShooting>
 {
-
     [SerializeField] float fireRate = 0.1f;
     [SerializeField] GameObject decalPrefab;
     [SerializeField] GameObject bulletTrail;
@@ -34,19 +33,18 @@ public class PlayerShooting : Singleton<PlayerShooting>
 
     public void ActivateAimRig(bool activate)
     {
-        aimRig.weight = activate? 1 : 0;
+        aimRig.weight = activate ? 1 : 0;
     }
 
     void Update()
     {
+        if (aimRig.weight == 0) return;
 
         Ray screenRay = cam.ScreenPointToRay(Input.mousePosition);
-
         Vector3 gunEndPos = gunEnd.position;
+        Vector3 direction = (screenRay.origin + screenRay.direction * 1000) - gunEndPos;
 
-        Vector3 direction  = (screenRay.origin + screenRay.direction * 1000) - gunEndPos;
-
-        if(Physics.Raycast(gunEndPos, direction, out hit, 1000, layerMask) && Vector3.Distance(gunEndPos, hit.point) > wallDistanceFloat)
+        if (Physics.Raycast(gunEndPos, direction, out hit, 1000, layerMask) && Vector3.Distance(gunEndPos, hit.point) > wallDistanceFloat)
         {
             targetPoint.position = hit.point;
             floating = false;
@@ -56,7 +54,8 @@ public class PlayerShooting : Singleton<PlayerShooting>
             targetPoint.position = targetSpacePoint.position;
             floating = true;
         }
-        if(Input.GetMouseButton(0) && Time.time >= nextTimeToFire)
+
+        if (Input.GetMouseButton(0) && Time.time >= nextTimeToFire)
         {
             nextTimeToFire = Time.time + fireRate;
             gunShotFX.Emit(1);
@@ -71,8 +70,7 @@ public class PlayerShooting : Singleton<PlayerShooting>
 
     void Shoot(Vector3 point)
     {
-        print("Shoot");
-        if(floating == false)
+        if (floating == false)
         {
             GameObject decal = Instantiate(decalPrefab, point + hit.normal * 0.001f, Quaternion.LookRotation(hit.normal));
         }

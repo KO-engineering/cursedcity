@@ -9,18 +9,21 @@ public class CarCustomizer : Singleton<CarCustomizer>
         public string title;
         public string description;
         public string price;
-        public GameObject carPrefab;  // The car model
-        public List<Material> materials; // List of materials available for this car
-        public List<GameObject> carUI;  // List of UI elements for this car
+        public GameObject carPrefab;  
+        public List<Material> materials; 
+        public List<GameObject> carUI;  
+        public bool isOwned = false;
     }
 
-    [SerializeField] private List<CarCustomization> cars; 
+    [SerializeField] public List<CarCustomization> cars; 
     [SerializeField] public GameObject tooltipPanel;
     [SerializeField] private TMPro.TextMeshProUGUI tooltipTitle;
     [SerializeField] private TMPro.TextMeshProUGUI tooltipDescription;
     [SerializeField] private TMPro.TextMeshProUGUI tooltipPrice;    
+    public CarPurchasingSystem purchasingSystem;
     private GameObject activeCar;
     public void Start(){
+        purchasingSystem = CarPurchasingSystem.Instance;
         HideTooltip();
     }
 
@@ -89,7 +92,15 @@ public class CarCustomizer : Singleton<CarCustomizer>
             }
         }
     }
-    public void ShowTooltip(int carNum)
+public void ShowTooltip(int carNum)
+{
+    purchasingSystem.SetCarIndex(carNum);
+    // Toggle the tooltip on and off when the button is clicked
+    if (tooltipPanel.activeSelf)
+    {
+        HideTooltip();
+    }
+    else
     {
         if (carNum >= 0 && carNum < cars.Count)
         {
@@ -97,8 +108,14 @@ public class CarCustomizer : Singleton<CarCustomizer>
             tooltipDescription.text = cars[carNum].description;
             tooltipPrice.text = cars[carNum].price;
             tooltipPanel.SetActive(true);
+            
+        }
+        else
+        {
+            Debug.LogError("Invalid car index for tooltip!");
         }
     }
+}
 
     public void HideTooltip()
     {

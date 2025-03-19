@@ -253,6 +253,141 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 38282758}
   m_CullTransparentMesh: 1
+--- !u!1 &43846133
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 43846134}
+  - component: {fileID: 43846136}
+  - component: {fileID: 43846135}
+  m_Layer: 5
+  m_Name: buy text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &43846134
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43846133}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1491788974}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &43846135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43846133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: BUY
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 70
+  m_fontSizeBase: 70
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &43846136
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43846133}
+  m_CullTransparentMesh: 1
 --- !u!1001 &75092925
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -497,7 +632,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -349, y: -256.1}
+  m_AnchoredPosition: {x: -349, y: -173}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &106611860
@@ -820,7 +955,6 @@ GameObject:
   - component: {fileID: 358193669}
   - component: {fileID: 358193668}
   - component: {fileID: 358193667}
-  - component: {fileID: 358193670}
   m_Layer: 5
   m_Name: car
   m_TagString: Untagged
@@ -904,6 +1038,18 @@ MonoBehaviour:
           m_StringArgument: 3,1
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1117008735}
+        m_TargetAssemblyTypeName: CarCustomizer, Assembly-CSharp
+        m_MethodName: ShowTooltip
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &358193668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -917,7 +1063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.33333334}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -939,19 +1085,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 358193665}
   m_CullTransparentMesh: 1
---- !u!114 &358193670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 358193665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbd7381b70acb4cb692c249cc60f0564, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  carIndex: 3
 --- !u!1 &367983515
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,10 +1393,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1283,7 +1416,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -1744,7 +1877,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
-  m_Range: 20
+  m_Range: 35
   m_SpotAngle: 63.626198
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1840,7 +1973,7 @@ Transform:
   - {fileID: 1976904050}
   - {fileID: 626665923}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &507553554
 PrefabInstance:
@@ -2129,8 +2262,10 @@ Transform:
   - {fileID: 1178232342}
   - {fileID: 1200613641}
   - {fileID: 1238222631}
+  - {fileID: 852978275}
+  - {fileID: 2084883548}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &573071892
 GameObject:
@@ -2557,7 +2692,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
-  m_Range: 20
+  m_Range: 35
   m_SpotAngle: 63.626198
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -2633,7 +2768,6 @@ GameObject:
   - component: {fileID: 653833223}
   - component: {fileID: 653833222}
   - component: {fileID: 653833221}
-  - component: {fileID: 653833224}
   m_Layer: 5
   m_Name: car
   m_TagString: Untagged
@@ -2714,7 +2848,19 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 2
           m_FloatArgument: 0
-          m_StringArgument: 2,1
+          m_StringArgument: 2,0
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1117008735}
+        m_TargetAssemblyTypeName: CarCustomizer, Assembly-CSharp
+        m_MethodName: ShowTooltip
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &653833222
@@ -2752,19 +2898,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 653833219}
   m_CullTransparentMesh: 1
---- !u!114 &653833224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653833219}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbd7381b70acb4cb692c249cc60f0564, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  carIndex: 2
 --- !u!1 &680663463
 GameObject:
   m_ObjectHideFlags: 0
@@ -2777,7 +2910,6 @@ GameObject:
   - component: {fileID: 680663468}
   - component: {fileID: 680663467}
   - component: {fileID: 680663466}
-  - component: {fileID: 680663465}
   m_Layer: 5
   m_Name: car (1)
   m_TagString: Untagged
@@ -2805,19 +2937,6 @@ RectTransform:
   m_AnchoredPosition: {x: 178.08, y: -180.16768}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &680663465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 680663463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbd7381b70acb4cb692c249cc60f0564, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  carIndex: 4
 --- !u!114 &680663466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2874,6 +2993,18 @@ MonoBehaviour:
           m_StringArgument: 4,1
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1117008735}
+        m_TargetAssemblyTypeName: CarCustomizer, Assembly-CSharp
+        m_MethodName: ShowTooltip
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &680663467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2887,7 +3018,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.33333334}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2942,6 +3073,7 @@ RectTransform:
   - {fileID: 1517590471}
   - {fileID: 106611859}
   - {fileID: 2020100135}
+  - {fileID: 1491788974}
   m_Father: {fileID: 392532362}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3053,6 +3185,56 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49565edfcce1e66479a3efcc2553545e, type: 3}
+--- !u!1 &827555114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 827555116}
+  - component: {fileID: 827555115}
+  m_Layer: 0
+  m_Name: Car Purchaser
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &827555115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827555114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5694b18a1464d4ddfad28f8bae5ebcf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carUI:
+  - {fileID: 1263191988}
+  - {fileID: 2035866081}
+  - {fileID: 653833222}
+  - {fileID: 358193668}
+  - {fileID: 680663467}
+--- !u!4 &827555116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827555114}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 271.12466, y: 391.35498, z: -148.51724}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &852978271
 GameObject:
   m_ObjectHideFlags: 0
@@ -3150,13 +3332,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 852978271}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.387, y: 3.41, z: 0.05}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 10.908123, y: 2.3190002, z: 6.298355}
   m_LocalScale: {x: 1, y: 1.1629, z: 14.614682}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_Father: {fileID: 560999291}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &861388632
 PrefabInstance:
@@ -3385,7 +3567,7 @@ MonoBehaviour:
   cars:
   - title: Low Car 1
     description: Generic Low Car. Comes with 5 different color schemes
-    price: 10,000
+    price: 25000
     carPrefab: {fileID: 1216369413684211}
     materials:
     - {fileID: 2100000, guid: 8f41f619adc4256468e51fb2fa277023, type: 2}
@@ -3399,10 +3581,11 @@ MonoBehaviour:
     - {fileID: 1484695437}
     - {fileID: 1849587215}
     - {fileID: 316225943}
+    isOwned: 0
   - title: Low Car 2
     description: Generic Convertible Car. Comes with same color scheme as Low Car
       1.
-    price: 15,000
+    price: 30000
     carPrefab: {fileID: 1514684960693347401}
     materials:
     - {fileID: 2100000, guid: 8f41f619adc4256468e51fb2fa277023, type: 2}
@@ -3416,16 +3599,19 @@ MonoBehaviour:
     - {fileID: 573071892}
     - {fileID: 2072424057}
     - {fileID: 1337762843}
-  - title: 
-    description: 
-    price: 
+    isOwned: 0
+  - title: Truck
+    description: Truck for transporting goods
+    price: 50000
     carPrefab: {fileID: 4077314613096315008}
     materials:
     - {fileID: 2100000, guid: d334e927297ae104ab278662983bb3c3, type: 2}
-    carUI: []
+    carUI:
+    - {fileID: 2045979528}
+    isOwned: 0
   - title: Van
     description: Comes with 6 different decals, perfect for driving around undetected
-    price: 20,000
+    price: 45000
     carPrefab: {fileID: 4051048852592906165}
     materials:
     - {fileID: 2100000, guid: e464ad67231c61e4d945edfb3add0259, type: 2}
@@ -3441,10 +3627,11 @@ MonoBehaviour:
     - {fileID: 1398977371}
     - {fileID: 1309180516}
     - {fileID: 1906389927}
+    isOwned: 0
   - title: Sports Car
     description: Comes with 10 different color schemes. Also comes with modified
       interior and exterior. May include illegal weapons
-    price: 100,000
+    price: 100000
     carPrefab: {fileID: 507553555}
     materials:
     - {fileID: 2100000, guid: a83d964d9890a074383caf3b5fe80c03, type: 2}
@@ -3468,10 +3655,12 @@ MonoBehaviour:
     - {fileID: 38282758}
     - {fileID: 422275590}
     - {fileID: 1893977321}
+    isOwned: 0
   tooltipPanel: {fileID: 715377305}
   tooltipTitle: {fileID: 1517590473}
   tooltipDescription: {fileID: 2020100137}
   tooltipPrice: {fileID: 1615430556}
+  purchasingSystem: {fileID: 827555115}
 --- !u!4 &1117008736
 Transform:
   m_ObjectHideFlags: 0
@@ -3766,7 +3955,6 @@ GameObject:
   - component: {fileID: 1263191989}
   - component: {fileID: 1263191988}
   - component: {fileID: 1263191987}
-  - component: {fileID: 1263191990}
   m_Layer: 5
   m_Name: Car
   m_TagString: Untagged
@@ -3850,6 +4038,18 @@ MonoBehaviour:
           m_StringArgument: 0,1
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1117008735}
+        m_TargetAssemblyTypeName: CarCustomizer, Assembly-CSharp
+        m_MethodName: ShowTooltip
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1263191988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3863,7 +4063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.33333334}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3885,19 +4085,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1263191985}
   m_CullTransparentMesh: 1
---- !u!114 &1263191990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1263191985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbd7381b70acb4cb692c249cc60f0564, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  carIndex: 0
 --- !u!1 &1309180516
 GameObject:
   m_ObjectHideFlags: 0
@@ -4710,6 +4897,7 @@ RectTransform:
   - {fileID: 38282759}
   - {fileID: 422275591}
   - {fileID: 1893977322}
+  - {fileID: 2045979529}
   m_Father: {fileID: 392532362}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.087}
@@ -4885,6 +5073,140 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1484695437}
+  m_CullTransparentMesh: 1
+--- !u!1 &1491788973
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1491788974}
+  - component: {fileID: 1491788977}
+  - component: {fileID: 1491788976}
+  - component: {fileID: 1491788975}
+  m_Layer: 5
+  m_Name: Buy Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1491788974
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491788973}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 43846134}
+  m_Father: {fileID: 715377306}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -230.71, y: 49.8935}
+  m_SizeDelta: {x: 436.6, y: 81.757}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1491788975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491788973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 0.745283, g: 0.15819688, b: 0.15819688, a: 1}
+    m_HighlightedColor: {r: 0.7169812, g: 0.13866144, b: 0.13866144, a: 1}
+    m_PressedColor: {r: 1, g: 0.033018887, b: 0.033018887, a: 1}
+    m_SelectedColor: {r: 0.8773585, g: 0.120016046, b: 0.120016046, a: 1}
+    m_DisabledColor: {r: 0.8396226, g: 0.051486313, b: 0.051486313, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1491788976}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 827555115}
+        m_TargetAssemblyTypeName: CarPurchasingSystem, Assembly-CSharp
+        m_MethodName: PurchaseCar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1491788976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491788973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1491788977
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491788973}
   m_CullTransparentMesh: 1
 --- !u!1 &1517590470
 GameObject:
@@ -5808,7 +6130,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1849587215
 GameObject:
@@ -6798,7 +7120,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
-  m_Range: 50
+  m_Range: 90
   m_SpotAngle: 63.626198
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -6897,8 +7219,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -228.1919, y: -0.55046}
-  m_SizeDelta: {x: 441.6161, y: 461.1}
+  m_AnchoredPosition: {x: -230.71, y: 46.4395}
+  m_SizeDelta: {x: 436.59, y: 367.1201}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2020100136
 CanvasRenderer:
@@ -7009,7 +7331,6 @@ GameObject:
   - component: {fileID: 2035866082}
   - component: {fileID: 2035866081}
   - component: {fileID: 2035866080}
-  - component: {fileID: 2035866083}
   m_Layer: 5
   m_Name: car
   m_TagString: Untagged
@@ -7093,6 +7414,18 @@ MonoBehaviour:
           m_StringArgument: 1,1
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1117008735}
+        m_TargetAssemblyTypeName: CarCustomizer, Assembly-CSharp
+        m_MethodName: ShowTooltip
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2035866081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7106,7 +7439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.33333334}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7128,19 +7461,136 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2035866078}
   m_CullTransparentMesh: 1
---- !u!114 &2035866083
+--- !u!1 &2045979528
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2045979529}
+  - component: {fileID: 2045979532}
+  - component: {fileID: 2045979531}
+  - component: {fileID: 2045979530}
+  m_Layer: 5
+  m_Name: Color (truck)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &2045979529
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045979528}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.7263e-11}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1448258817}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 63.847, y: -60.368}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2045979530
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2035866078}
+  m_GameObject: {fileID: 2045979528}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbd7381b70acb4cb692c249cc60f0564, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carIndex: 1
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 2045979531}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1117008735}
+        m_TargetAssemblyTypeName: CarCustomizer, Assembly-CSharp
+        m_MethodName: SetCarColorFromButton
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 2,0
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2045979531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045979528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 2800000, guid: a739a5396149b4ef0ac3941e0afcff24, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &2045979532
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045979528}
+  m_CullTransparentMesh: 1
 --- !u!1 &2057350263
 GameObject:
   m_ObjectHideFlags: 0
@@ -7152,6 +7602,7 @@ GameObject:
   - component: {fileID: 2057350264}
   - component: {fileID: 2057350266}
   - component: {fileID: 2057350265}
+  - component: {fileID: 2057350267}
   m_Layer: 5
   m_Name: 'Currency '
   m_TagString: Untagged
@@ -7216,6 +7667,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2057350263}
   m_CullTransparentMesh: 1
+--- !u!114 &2057350267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057350263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cf7f72e92eb54d6aad297309fd551ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currencyAmount: 100000
+  currencyText: {fileID: 78491683}
 --- !u!1 &2072424057
 GameObject:
   m_ObjectHideFlags: 0
@@ -7443,13 +7908,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2084883544}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.32, y: 3.41, z: 0.05}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.7988768, y: 2.3190002, z: 6.298355}
   m_LocalScale: {x: 1, y: 1.1629, z: 14.614682}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_Father: {fileID: 560999291}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2142937372
 GameObject:
