@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class CarCustomizer : Singleton<CarCustomizer>
 {
     [System.Serializable]
@@ -20,11 +20,32 @@ public class CarCustomizer : Singleton<CarCustomizer>
     [SerializeField] private TMPro.TextMeshProUGUI tooltipTitle;
     [SerializeField] private TMPro.TextMeshProUGUI tooltipDescription;
     [SerializeField] private TMPro.TextMeshProUGUI tooltipPrice;    
+    [SerializeField] private Button selectCarButton;
     public CarPurchasingSystem purchasingSystem;
     private GameObject activeCar;
+    private int currentMaterialIndex = 0;
     public void Start(){
         purchasingSystem = CarPurchasingSystem.Instance;
         HideTooltip();
+        CarDataManager.LoadFromPlayerPrefs();
+        
+        // Update owned status based on saved data
+        for (int i = 0; i < cars.Count; i++)
+        {
+            cars[i].isOwned = CarDataManager.IsCarOwned(i);
+            
+            // Update UI for owned cars
+            if (cars[i].isOwned && purchasingSystem != null && i < purchasingSystem.carUI.Count)
+            {
+                purchasingSystem.SetOpacity(1f, purchasingSystem.carUI[i]);
+            }
+        }
+        
+        // If there's a selected car, show it
+        if (CarDataManager.SelectedCarIndex >= 0 && CarDataManager.SelectedCarIndex < cars.Count)
+        {
+            SetColor(CarDataManager.SelectedCarIndex, CarDataManager.SelectedMaterialIndex);
+        }
     }
 
     public void SetColor(int carNum, int matNum)
@@ -92,33 +113,67 @@ public class CarCustomizer : Singleton<CarCustomizer>
             }
         }
     }
-public void ShowTooltip(int carNum)
-{
-    purchasingSystem.SetCarIndex(carNum);
-    // Toggle the tooltip on and off when the button is clicked
-    if (tooltipPanel.activeSelf)
+    public void ShowTooltip(int carNum)
     {
-        HideTooltip();
-    }
-    else
-    {
-        if (carNum >= 0 && carNum < cars.Count)
+        purchasingSystem.SetCarIndex(carNum);
+        // Toggle the tooltip on and off when the button is clicked
+        if (tooltipPanel.activeSelf)
         {
-            tooltipTitle.text = cars[carNum].title;
-            tooltipDescription.text = cars[carNum].description;
-            tooltipPrice.text = cars[carNum].price;
-            tooltipPanel.SetActive(true);
-            
+            HideTooltip();
         }
         else
         {
-            Debug.LogError("Invalid car index for tooltip!");
+            if (carNum >= 0 && carNum < cars.Count)
+            {
+                tooltipTitle.text = cars[carNum].title;
+                tooltipDescription.text = cars[carNum].description;
+                tooltipPrice.text = cars[carNum].price;
+                tooltipPanel.SetActive(true);
+                
+            }
+            else
+            {
+                Debug.LogError("Invalid car index for tooltip!");
+            }
         }
     }
-}
+    
 
     public void HideTooltip()
     {
         tooltipPanel.SetActive(false);
+    }
+    public void SelectCurrentCar()
+    {
+        // Find which car is currently active
+        int activeCarIndex = -1;
+        for (int i = 0; i < cars.Count; i++)
+        {
+            if (cars[i].carPrefab == activeCar)
+            {
+                activeCarIndex = i;
+                break;
+            }
+        }
+        
+        if (activeCarIndex >= 0)
+        {
+            // Check if the car is owned
+            if (cars[activeCarIndex].isOwned)
+            {
+                // Save selection
+                CarDataManager.SelectCar(activeCarIndex, currentMaterialIndex);
+                Debug.Log($"Selected car {activeCarIndex} with material {currentMaterialIndex}");
+                
+                // Optional: You can add visual feedback here
+                // ShowMessage("Car selected!");
+            }
+            else
+            {
+                Debug.Log("You need to purchase this car first!");
+                // Optional: You can add visual feedback here
+                // ShowMessage("You need to purchase this car first!");
+            }
+        }
     }
 }

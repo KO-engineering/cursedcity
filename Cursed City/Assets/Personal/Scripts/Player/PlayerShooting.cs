@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
-
+using UnityEngine.UI;
 public class PlayerShooting : Singleton<PlayerShooting>
 {
     [SerializeField] float fireRate = 0.1f;
@@ -22,6 +22,12 @@ public class PlayerShooting : Singleton<PlayerShooting>
 
     [SerializeField] float wallDistanceFloat = 2;
 
+    [HorizontalLine]
+    public Image ammoBar;
+    public int ammoAmount = 100;
+    public int ammountMax = 100;
+    public int damage = 100;
+    public int takeAmmoAmount = 2;
     RaycastHit hit;
     float nextTimeToFire = 0;
     bool floating;
@@ -29,6 +35,8 @@ public class PlayerShooting : Singleton<PlayerShooting>
     void Start()
     {
         ActivateAimRig(false);
+        ammoAmount = ammountMax;
+        ammoBar.fillAmount = 1;
     }
 
     public void ActivateAimRig(bool activate)
@@ -55,7 +63,7 @@ public class PlayerShooting : Singleton<PlayerShooting>
             floating = true;
         }
 
-        if (Input.GetMouseButton(0) && Time.time >= nextTimeToFire)
+        if (Input.GetMouseButton(0) && Time.time >= nextTimeToFire && ammoAmount > 0)
         {
             nextTimeToFire = Time.time + fireRate;
             gunShotFX.Emit(1);
@@ -66,6 +74,10 @@ public class PlayerShooting : Singleton<PlayerShooting>
         {
             bulletTrail.SetActive(false);
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            StartCoroutine(Reload());
+        }
     }
 
     void Shoot(Vector3 point)
@@ -74,5 +86,17 @@ public class PlayerShooting : Singleton<PlayerShooting>
         {
             GameObject decal = Instantiate(decalPrefab, point + hit.normal * 0.001f, Quaternion.LookRotation(hit.normal));
         }
+            if(hit.transform.TryGetComponent<Health>(out Health h))
+        {
+            h.ChangeHealth(-damage);
+        }
+        ammoAmount -= takeAmmoAmount;
+        ammoBar.fillAmount = ammoAmount / 100f;
+    }
+
+    IEnumerator Reload(){
+        yield return new WaitForSeconds(3);
+        ammoAmount = ammountMax;
+        ammoBar.fillAmount = 1;
     }
 }
