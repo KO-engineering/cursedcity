@@ -13,6 +13,8 @@ public class CarCustomizer : Singleton<CarCustomizer>
         public List<Material> materials; 
         public List<GameObject> carUI;  
         public bool isOwned = false;
+
+        public GameObject actualCarPrefab;
     }
 
     [SerializeField] public List<CarCustomization> cars; 
@@ -46,6 +48,18 @@ public class CarCustomizer : Singleton<CarCustomizer>
         {
             SetColor(CarDataManager.SelectedCarIndex, CarDataManager.SelectedMaterialIndex);
         }
+
+        
+       
+    }
+
+    void OnSelectCar()
+    {
+        //theScriptDontDestroyLoad.Instance.carToLoad = cars[0].actualCarPrefab
+
+
+        // Ran on the main scene when you get out of the garage
+        //Instantiate(theScriptDontDestroyLoad.Instance.carToLoad);
     }
 
     public void SetColor(int carNum, int matNum)
