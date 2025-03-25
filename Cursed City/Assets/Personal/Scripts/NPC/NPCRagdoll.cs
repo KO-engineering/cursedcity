@@ -12,7 +12,7 @@ public class NPCRagdoll : MonoBehaviour
     Transform player;
     
     void Start() {
-        player = PlayerController.Instance.transform;
+        player = PlayerControllerTesting.Instance.transform;
     }
     
     public void StartRagdoll()

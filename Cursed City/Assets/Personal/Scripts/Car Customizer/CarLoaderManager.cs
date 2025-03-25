@@ -48,6 +48,7 @@ public class CarLoaderManager : MonoBehaviour
                 Vector3 spawnPosition = spawnPoint ? spawnPoint.transform.position : Vector3.zero;
                 Quaternion spawnRotation = spawnPoint ? spawnPoint.transform.rotation : Quaternion.identity;
 
+                print("Spawning " + carPrefab.name);
                 // Instantiate the car at the spawn point
                 GameObject spawnedCar = Instantiate(carPrefab, spawnPosition, spawnRotation);
 
