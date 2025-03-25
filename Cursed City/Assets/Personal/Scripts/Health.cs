@@ -28,7 +28,7 @@ public class Health : MonoBehaviour
             dead = true;
             hp = 0;
             OnDie?.Invoke();
-            //KillCount.Instance.killCount += 1;
+            KillCount.Instance.killCount += 1;
         }
 
     }

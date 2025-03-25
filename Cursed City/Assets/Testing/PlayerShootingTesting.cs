@@ -12,6 +12,7 @@ public class PlayerShootingTesting : Singleton<PlayerShootingTesting>
     [SerializeField] GameObject bulletTrail;
     [SerializeField] ParticleSystem gunShotFX;
 
+
     [HorizontalLine]
 
     [SerializeField] Rig aimRig;
@@ -27,7 +28,13 @@ public class PlayerShootingTesting : Singleton<PlayerShootingTesting>
     [SerializeField] float smoothingSpeed = 5f;
 
     [HorizontalLine]
-
+    public Image ammoBar;
+    public int ammoAmount = 100;
+    public int ammountMax = 100;
+    public int damage = 100;
+    public int takeAmmoAmount = 2;
+    [HorizontalLine]
+    
     RaycastHit hit;
     float nextTimeToFire = 0;
 
@@ -38,6 +45,8 @@ public class PlayerShootingTesting : Singleton<PlayerShootingTesting>
         aimRig.weight = 0;
         armRig.weight = 0;
         builder.enabled = false;
+        ammoAmount = ammountMax;
+        ammoBar.fillAmount = 1;
     }
 
     public void ActivateAimRig(bool activate)
@@ -88,7 +97,7 @@ public class PlayerShootingTesting : Singleton<PlayerShootingTesting>
             targetPoint.position = hit.point;
         }
 
-        if (Input.GetMouseButton(0) && Time.time >= nextTimeToFire)
+        if (Input.GetMouseButton(0) && Time.time >= nextTimeToFire && ammoAmount > 0)
         {
             nextTimeToFire = Time.time + fireRate;
             gunShotFX.Emit(1);
@@ -101,10 +110,25 @@ public class PlayerShootingTesting : Singleton<PlayerShootingTesting>
             PlayerControllerTesting.Instance.animator.SetBool("Shooting", false);
             bulletTrail.SetActive(false);
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            StartCoroutine(Reload());
+        }
     }
 
     void Shoot(Vector3 point)
     {
         Instantiate(decalPrefab, point + hit.normal * 0.001f, Quaternion.LookRotation(hit.normal));
+        if(hit.transform.TryGetComponent<Health>(out Health h))
+        {
+            h.ChangeHealth(-damage);
+        }
+        ammoAmount -= takeAmmoAmount;
+        ammoBar.fillAmount = ammoAmount / 100f;
+    }
+    IEnumerator Reload(){
+        yield return new WaitForSeconds(3);
+        ammoAmount = ammountMax;
+        ammoBar.fillAmount = 1;
     }
 }

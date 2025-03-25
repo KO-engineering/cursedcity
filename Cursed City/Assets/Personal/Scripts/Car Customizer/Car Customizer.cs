@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class CarCustomizer : Singleton<CarCustomizer>
 {
@@ -26,15 +27,16 @@ public class CarCustomizer : Singleton<CarCustomizer>
     public CarPurchasingSystem purchasingSystem;
     private GameObject activeCar;
     private int currentMaterialIndex = 0;
-    public void Start(){
+    public void Start()
+    {
         purchasingSystem = CarPurchasingSystem.Instance;
         HideTooltip();
-        CarDataManager.LoadFromPlayerPrefs();
-        
-        // Update owned status based on saved data
+
+        // Load car ownership data
         for (int i = 0; i < cars.Count; i++)
         {
-            cars[i].isOwned = CarDataManager.IsCarOwned(i);
+            // Update owned status (this would be managed by your purchasing system)
+            cars[i].isOwned = PlayerPrefs.GetInt($"Car_{i}_Owned", 0) == 1;
             
             // Update UI for owned cars
             if (cars[i].isOwned && purchasingSystem != null && i < purchasingSystem.carUI.Count)
@@ -43,23 +45,16 @@ public class CarCustomizer : Singleton<CarCustomizer>
             }
         }
         
-        // If there's a selected car, show it
-        if (CarDataManager.SelectedCarIndex >= 0 && CarDataManager.SelectedCarIndex < cars.Count)
+        // Restore last selected car and material
+        int savedCarIndex = PlayerPrefs.GetInt("SelectedCarIndex", -1);
+        int savedMaterialIndex = PlayerPrefs.GetInt("SelectedMaterialIndex", 0);
+
+        // If a car was previously selected, show it
+        if (savedCarIndex >= 0 && savedCarIndex < cars.Count)
         {
-            SetColor(CarDataManager.SelectedCarIndex, CarDataManager.SelectedMaterialIndex);
+            SetColor(savedCarIndex, savedMaterialIndex);
+            currentMaterialIndex = savedMaterialIndex;
         }
-
-        
-       
-    }
-
-    void OnSelectCar()
-    {
-        //theScriptDontDestroyLoad.Instance.carToLoad = cars[0].actualCarPrefab
-
-
-        // Ran on the main scene when you get out of the garage
-        //Instantiate(theScriptDontDestroyLoad.Instance.carToLoad);
     }
 
     public void SetColor(int carNum, int matNum)
@@ -105,9 +100,12 @@ public class CarCustomizer : Singleton<CarCustomizer>
         {
             Debug.LogError("Selected car does not have a Renderer component!");
         }
+        
         activeCar = selectedCar.carPrefab;
+        currentMaterialIndex = matNum;
         EnableRotationForSelectedCar();
     }
+
     public void SetCarColorFromButton(string parameters)
     {
         string[] values = parameters.Split(',');
@@ -116,6 +114,7 @@ public class CarCustomizer : Singleton<CarCustomizer>
             SetColor(carNum, matNum);
         }
     }
+
     private void EnableRotationForSelectedCar()
     {
         foreach (var car in cars)
@@ -127,9 +126,11 @@ public class CarCustomizer : Singleton<CarCustomizer>
             }
         }
     }
+
     public void ShowTooltip(int carNum)
     {
         purchasingSystem.SetCarIndex(carNum);
+        
         // Toggle the tooltip on and off when the button is clicked
         if (tooltipPanel.activeSelf)
         {
@@ -143,7 +144,6 @@ public class CarCustomizer : Singleton<CarCustomizer>
                 tooltipDescription.text = cars[carNum].description;
                 tooltipPrice.text = cars[carNum].price;
                 tooltipPanel.SetActive(true);
-                
             }
             else
             {
@@ -151,12 +151,12 @@ public class CarCustomizer : Singleton<CarCustomizer>
             }
         }
     }
-    
 
     public void HideTooltip()
     {
         tooltipPanel.SetActive(false);
     }
+
     public void SelectCurrentCar()
     {
         // Find which car is currently active
@@ -175,18 +175,20 @@ public class CarCustomizer : Singleton<CarCustomizer>
             // Check if the car is owned
             if (cars[activeCarIndex].isOwned)
             {
-                // Save selection
-                CarDataManager.SelectCar(activeCarIndex, currentMaterialIndex);
+                // Save the selected car and material
+                PlayerPrefs.SetInt("SelectedCarIndex", activeCarIndex);
+                PlayerPrefs.SetInt("SelectedMaterialIndex", currentMaterialIndex);
+                PlayerPrefs.Save();
+
                 Debug.Log($"Selected car {activeCarIndex} with material {currentMaterialIndex}");
                 
-                // Optional: You can add visual feedback here
-                // ShowMessage("Car selected!");
+                // Transition to main game scene
+                SceneManager.LoadScene("Main Game"); // Replace with your actual scene name
             }
             else
             {
                 Debug.Log("You need to purchase this car first!");
-                // Optional: You can add visual feedback here
-                // ShowMessage("You need to purchase this car first!");
+                // Optional: Add visual feedback for unpurchased car
             }
         }
     }

@@ -3582,6 +3582,7 @@ MonoBehaviour:
     - {fileID: 1849587215}
     - {fileID: 316225943}
     isOwned: 0
+    actualCarPrefab: {fileID: 0}
   - title: Low Car 2
     description: Generic Convertible Car. Comes with same color scheme as Low Car
       1.
@@ -3600,6 +3601,7 @@ MonoBehaviour:
     - {fileID: 2072424057}
     - {fileID: 1337762843}
     isOwned: 0
+    actualCarPrefab: {fileID: 0}
   - title: Truck
     description: Truck for transporting goods
     price: 50000
@@ -3609,6 +3611,7 @@ MonoBehaviour:
     carUI:
     - {fileID: 2045979528}
     isOwned: 0
+    actualCarPrefab: {fileID: 0}
   - title: Van
     description: Comes with 6 different decals, perfect for driving around undetected
     price: 45000
@@ -3628,6 +3631,7 @@ MonoBehaviour:
     - {fileID: 1309180516}
     - {fileID: 1906389927}
     isOwned: 0
+    actualCarPrefab: {fileID: 0}
   - title: Sports Car
     description: Comes with 10 different color schemes. Also comes with modified
       interior and exterior. May include illegal weapons
@@ -3656,6 +3660,7 @@ MonoBehaviour:
     - {fileID: 422275590}
     - {fileID: 1893977321}
     isOwned: 0
+    actualCarPrefab: {fileID: 0}
   tooltipPanel: {fileID: 715377305}
   tooltipTitle: {fileID: 1517590473}
   tooltipDescription: {fileID: 2020100137}
@@ -6571,6 +6576,120 @@ MonoBehaviour:
           m_StringArgument: 3,1
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &1880966954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1880966956}
+  - component: {fileID: 1880966955}
+  m_Layer: 0
+  m_Name: CarLoaderSaver
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1880966955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880966954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bf55d476ee654a359ac79c610450f06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  availableCars:
+  - title: Low Car 1
+    description: aGeneric Low Car. Comes with 5 different color schemes
+    price: 25000
+    carPrefab: {fileID: 1216369413684211}
+    materials:
+    - {fileID: 2100000, guid: 8f41f619adc4256468e51fb2fa277023, type: 2}
+    - {fileID: 2100000, guid: 6b7c7c892819c2645853bd7be049af09, type: 2}
+    - {fileID: 2100000, guid: edcc9437d18da5f4799d691834617715, type: 2}
+    - {fileID: 2100000, guid: d334e927297ae104ab278662983bb3c3, type: 2}
+    - {fileID: 2100000, guid: 3569233f43d64d9489df5ed942a99465, type: 2}
+    carUI: []
+    isOwned: 0
+    actualCarPrefab: {fileID: 0}
+  - title: Low Car 2
+    description: Generic Convertible Car. Comes with same color scheme as Low Car
+      1.
+    price: 30000
+    carPrefab: {fileID: 1514684960693347401}
+    materials:
+    - {fileID: 2100000, guid: 8f41f619adc4256468e51fb2fa277023, type: 2}
+    - {fileID: 2100000, guid: 6b7c7c892819c2645853bd7be049af09, type: 2}
+    - {fileID: 2100000, guid: edcc9437d18da5f4799d691834617715, type: 2}
+    - {fileID: 2100000, guid: d334e927297ae104ab278662983bb3c3, type: 2}
+    - {fileID: 2100000, guid: 3569233f43d64d9489df5ed942a99465, type: 2}
+    carUI: []
+    isOwned: 0
+    actualCarPrefab: {fileID: 0}
+  - title: Truck
+    description: Truck for transporting goods
+    price: 50000
+    carPrefab: {fileID: 4077314613096315008}
+    materials:
+    - {fileID: 2100000, guid: d334e927297ae104ab278662983bb3c3, type: 2}
+    carUI: []
+    isOwned: 0
+    actualCarPrefab: {fileID: 0}
+  - title: Van
+    description: Comes with 6 different decals, perfect for driving around undetected
+    price: 45000
+    carPrefab: {fileID: 4051048852592906165}
+    materials:
+    - {fileID: 2100000, guid: e464ad67231c61e4d945edfb3add0259, type: 2}
+    - {fileID: 2100000, guid: 8f41f619adc4256468e51fb2fa277023, type: 2}
+    - {fileID: 2100000, guid: 6b7c7c892819c2645853bd7be049af09, type: 2}
+    - {fileID: 2100000, guid: edcc9437d18da5f4799d691834617715, type: 2}
+    - {fileID: 2100000, guid: d334e927297ae104ab278662983bb3c3, type: 2}
+    - {fileID: 2100000, guid: 3569233f43d64d9489df5ed942a99465, type: 2}
+    carUI: []
+    isOwned: 0
+    actualCarPrefab: {fileID: 0}
+  - title: Sports Car
+    description: Comes with 10 different color schemes. Also comes with modified
+      interior and exterior. May include illegal weapons
+    price: 100000
+    carPrefab: {fileID: 507553555}
+    materials:
+    - {fileID: 2100000, guid: a83d964d9890a074383caf3b5fe80c03, type: 2}
+    - {fileID: 2100000, guid: 3fff82769a1863e43b8f4faf5f187d03, type: 2}
+    - {fileID: 2100000, guid: 596281c2b68494648985b50de105a832, type: 2}
+    - {fileID: 2100000, guid: ca5d006fa7d675e4d80778cccfb607a6, type: 2}
+    - {fileID: 2100000, guid: 5b18f818978a2ef46a6ac2345a785199, type: 2}
+    - {fileID: 2100000, guid: 20e0ae80a8a227b4882d1ed32d0acaa3, type: 2}
+    - {fileID: 2100000, guid: 687c019d7b2d6bb4582a1c50808c4270, type: 2}
+    - {fileID: 2100000, guid: 126853f701a2a4a4dad20ec2b1217c5f, type: 2}
+    - {fileID: 2100000, guid: 52a369547452462468a81984a19001f5, type: 2}
+    - {fileID: 2100000, guid: ebfb6258a35737b428cbeb963f7755c9, type: 2}
+    carUI: []
+    isOwned: 0
+    actualCarPrefab: {fileID: 0}
+--- !u!4 &1880966956
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880966954}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1893977321
 GameObject:
   m_ObjectHideFlags: 0
@@ -6868,7 +6987,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -64, y: 53.5}
+  m_AnchoredPosition: {x: -63.99994, y: 53.5}
   m_SizeDelta: {x: -128, y: -107}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1921181795
