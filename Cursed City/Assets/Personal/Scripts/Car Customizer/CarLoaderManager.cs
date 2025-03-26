@@ -39,7 +39,7 @@ public class CarLoaderManager : MonoBehaviour
 
         if (selectedCarIndex >= 0 && selectedCarIndex < availableCars.Length)
         {
-            GameObject carPrefab = availableCars[selectedCarIndex].carPrefab;
+            GameObject carPrefab = availableCars[selectedCarIndex].actualCarPrefab;
 
             if (carPrefab != null)
             {
