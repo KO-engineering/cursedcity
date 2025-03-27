@@ -50,35 +50,37 @@ public class NPCSheriff : MonoBehaviour
 
     void Update()
     {
-        animator.SetFloat("Speed", navMeshAgent.isStopped? 0 : 0.5f);
+        if(GetComponent<Health>().hp > 0){
+            animator.SetFloat("Speed", navMeshAgent.isStopped? 0 : 0.5f);
 
-        // Check if the NPC is not stopped
-        if (!navMeshAgent.isStopped)
-        {
-            // If not stopped, set the animator speed
-            animator.SetFloat("Speed", 0.5f);
-            isThere = false;
-        }
-
-        float dist = Vector3.Distance(player.position, transform.position);
-
-        if (KillCount.Instance.killCount > 0 && dist <= maxDist)
-        {
-            if (!isShooting && !Input.GetKeyDown(KeyCode.Space))
+            // Check if the NPC is not stopped
+            if (!navMeshAgent.isStopped)
             {
-                isShooting = true;
-                StartCoroutine(SheriffShoot());
+                // If not stopped, set the animator speed
+                animator.SetFloat("Speed", 0.5f);
+                isThere = false;
             }
-            killing = true;
-            navMeshAgent.SetDestination(player.position);
-            animator.SetBool("Aiming", true);
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            float dist = Vector3.Distance(player.position, transform.position);
+
+            if (KillCount.Instance.killCount > 0 && dist <= maxDist)
             {
-                isShooting = true;
-                navMeshAgent.speed = 8;
-                animator.SetFloat("Speed", 8f);
-                animator.SetBool("Aiming", false);
+                if (!isShooting && !Input.GetKeyDown(KeyCode.Space))
+                {
+                    isShooting = true;
+                    StartCoroutine(SheriffShoot());
+                }
+                killing = true;
+                navMeshAgent.SetDestination(player.position);
+                animator.SetBool("Aiming", true);
+
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    isShooting = true;
+                    navMeshAgent.speed = 8;
+                    animator.SetFloat("Speed", 8f);
+                    animator.SetBool("Aiming", false);
+                }
             }
         }
     }
