@@ -36,6 +36,12 @@ public class NPCSheriff : MonoBehaviour
         animator = GetComponent<Animator>();
         if (npcPatrolPathParent != null) StartCoroutine(MoveToNextTarget());
     }
+
+    void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+
     [Button("Wander")]
     public void WanderAgent()
     {

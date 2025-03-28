@@ -14,6 +14,8 @@ public class NPCMovement : MonoBehaviour
     [ReadOnly] public int randomIndex;
     [ReadOnly] public Transform targetTransform;
 
+    Coroutine destinationRoutine;
+
     void Start()
     {
         randomNum = Random.Range(0, 100);
@@ -24,7 +26,15 @@ public class NPCMovement : MonoBehaviour
 
         navMeshAgent.speed = Random.Range(manager.npcSpeedRange.x, manager.npcSpeedRange.y);
 
-        StartCoroutine(MoveToNextTarget());
+        destinationRoutine = StartCoroutine(MoveToNextTarget());
+    }
+
+    void OnDisable()
+    {
+        if (destinationRoutine != null)
+        {
+            StopCoroutine(destinationRoutine);
+        }
     }
 
     [Button("Wander")]

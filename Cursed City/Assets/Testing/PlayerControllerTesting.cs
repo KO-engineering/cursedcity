@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class PlayerControllerTesting : Singleton<PlayerControllerTesting>
@@ -111,4 +112,11 @@ public class PlayerControllerTesting : Singleton<PlayerControllerTesting>
     {
         allowMove = doLock == false;
     }
+
+    [Button]
+    public void ResetData()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
 }

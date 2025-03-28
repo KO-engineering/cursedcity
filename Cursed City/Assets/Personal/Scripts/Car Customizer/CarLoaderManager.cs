@@ -1,13 +1,19 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CarLoaderManager : MonoBehaviour
+public class CarLoaderManager : Singleton<CarLoaderManager>
 {
-    [SerializeField] private CarCustomizer.CarCustomization[] availableCars;
-    
-    void Awake()
+    public GameObject carPrefab;
+    public Material carMaterial;
+
+    public void SetCar(GameObject prefab, Material carMaterial)
     {
-        // Ensure this object persists across scene loads
+        this.carPrefab = prefab;
+        this.carMaterial = carMaterial;
+    }
+
+    void Start()
+    {
         DontDestroyOnLoad(gameObject);
     }
 
@@ -26,7 +32,7 @@ public class CarLoaderManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // Check if we're in the main game scene
-        if (scene.name == "Main Game") 
+        if (scene.name == "Main Game")
         {
             SpawnSelectedCar();
         }
@@ -34,39 +40,23 @@ public class CarLoaderManager : MonoBehaviour
 
     public void SpawnSelectedCar()
     {
-        int selectedCarIndex = PlayerPrefs.GetInt("SelectedCarIndex", -1);
-        int selectedMaterialIndex = PlayerPrefs.GetInt("SelectedMaterialIndex", 0);
-
-        if (selectedCarIndex >= 0 && selectedCarIndex < availableCars.Length)
+        if (carPrefab != null)
         {
-            GameObject carPrefab = availableCars[selectedCarIndex].actualCarPrefab;
+            // Find a spawn point in the scene (optional)
+            GameObject spawnPoint = GameObject.FindGameObjectWithTag("CarSpawnPoint");
+            Vector3 spawnPosition = spawnPoint ? spawnPoint.transform.position : Vector3.zero;
+            Quaternion spawnRotation = spawnPoint ? spawnPoint.transform.rotation : Quaternion.identity;
 
-            if (carPrefab != null)
+            print("Spawning " + carPrefab.name);
+            // Instantiate the car at the spawn point
+            GameObject spawnedCar = Instantiate(carPrefab, spawnPosition, spawnRotation);
+
+            // Apply the selected material
+            Renderer carRenderer = spawnedCar.GetComponent<Renderer>();
+            if (carRenderer != null && carMaterial != null)
             {
-                // Find a spawn point in the scene (optional)
-                GameObject spawnPoint = GameObject.FindGameObjectWithTag("CarSpawnPoint");
-                Vector3 spawnPosition = spawnPoint ? spawnPoint.transform.position : Vector3.zero;
-                Quaternion spawnRotation = spawnPoint ? spawnPoint.transform.rotation : Quaternion.identity;
-
-                print("Spawning " + carPrefab.name);
-                // Instantiate the car at the spawn point
-                GameObject spawnedCar = Instantiate(carPrefab, spawnPosition, spawnRotation);
-
-                // Apply the selected material
-                Renderer carRenderer = spawnedCar.GetComponent<Renderer>();
-                if (carRenderer != null && selectedMaterialIndex < availableCars[selectedCarIndex].materials.Count)
-                {
-                    carRenderer.material = availableCars[selectedCarIndex].materials[selectedMaterialIndex];
-                }
+                carRenderer.material = carMaterial;
             }
-            else
-            {
-                Debug.LogError("Selected car prefab is null!");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("No car selected or invalid car index!");
         }
     }
 }

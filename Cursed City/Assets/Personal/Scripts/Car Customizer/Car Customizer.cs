@@ -25,25 +25,12 @@ public class CarCustomizer : Singleton<CarCustomizer>
     [SerializeField] private TMPro.TextMeshProUGUI tooltipPrice;    
     [SerializeField] private Button selectCarButton;
     public CarPurchasingSystem purchasingSystem;
-    private GameObject activeCar;
-    private int currentMaterialIndex = 0;
+    public GameObject activeCar;
+    public int currentMaterialIndex = 0;
     public void Start()
     {
         purchasingSystem = CarPurchasingSystem.Instance;
         HideTooltip();
-
-        // Load car ownership data
-        for (int i = 0; i < cars.Count; i++)
-        {
-            // Update owned status (this would be managed by your purchasing system)
-            cars[i].isOwned = PlayerPrefs.GetInt($"Car_{i}_Owned", 0) == 1;
-            
-            // Update UI for owned cars
-            if (cars[i].isOwned && purchasingSystem != null && i < purchasingSystem.carUI.Count)
-            {
-                purchasingSystem.SetOpacity(1f, purchasingSystem.carUI[i]);
-            }
-        }
         
         // Restore last selected car and material
         int savedCarIndex = PlayerPrefs.GetInt("SelectedCarIndex", -1);
@@ -101,8 +88,10 @@ public class CarCustomizer : Singleton<CarCustomizer>
             Debug.LogError("Selected car does not have a Renderer component!");
         }
         
-        activeCar = selectedCar.carPrefab;
+        activeCar = cars[carNum].actualCarPrefab;
         currentMaterialIndex = matNum;
+
+        CarLoaderManager.Instance.SetCar(activeCar, selectedCar.materials[currentMaterialIndex]);
         EnableRotationForSelectedCar();
     }
 
@@ -122,7 +111,7 @@ public class CarCustomizer : Singleton<CarCustomizer>
             CarRotationController rotationController = car.carPrefab.GetComponent<CarRotationController>();
             if (rotationController != null)
             {
-                rotationController.enabled = (car.carPrefab == activeCar);
+                rotationController.enabled = car.isOwned;
             }
         }
     }
@@ -163,7 +152,7 @@ public class CarCustomizer : Singleton<CarCustomizer>
         int activeCarIndex = -1;
         for (int i = 0; i < cars.Count; i++)
         {
-            if (cars[i].carPrefab == activeCar)
+            if (cars[i].actualCarPrefab == activeCar)
             {
                 activeCarIndex = i;
                 break;
