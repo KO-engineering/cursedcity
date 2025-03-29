@@ -109,10 +109,6 @@ public class CarCustomizer : Singleton<CarCustomizer>
         foreach (var car in cars)
         {
             CarRotationController rotationController = car.carPrefab.GetComponent<CarRotationController>();
-            if (rotationController != null)
-            {
-                rotationController.enabled = car.isOwned;
-            }
         }
     }
 

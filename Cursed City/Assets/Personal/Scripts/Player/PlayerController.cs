@@ -5,6 +5,7 @@ public class PlayerController : Singleton<PlayerController>
     public Animator animator;
     public CharacterController controller;
     public Transform cameraTransform;
+    public GameObject camera;
 
     public float speed = 5f;
     public float runMultiplier = 2;
@@ -22,6 +23,10 @@ public class PlayerController : Singleton<PlayerController>
 
     public bool allowMove = true;
 
+    void Start()
+    {
+        camera.SetActive(true);
+    }
     void Update()
     {
         if (Input.GetKeyDown(aimKey))
@@ -102,5 +107,9 @@ public class PlayerController : Singleton<PlayerController>
     public void LockPlayer(bool doLock)
     {
         allowMove = doLock == false;
+    }
+    public void Driving(){
+        camera.SetActive(false);
+        allowMove = false;
     }
 }
