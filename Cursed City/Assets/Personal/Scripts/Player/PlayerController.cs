@@ -26,6 +26,8 @@ public class PlayerController : Singleton<PlayerController>
     void Start()
     {
         camera.SetActive(true);
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save(); 
     }
     void Update()
     {

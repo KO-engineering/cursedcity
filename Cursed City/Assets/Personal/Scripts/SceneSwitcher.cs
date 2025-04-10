@@ -16,6 +16,9 @@ public class SceneSwitcher : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.C)){
             SwitchToScene("Car Customizer");
         }
+        if(Input.GetKeyDown(KeyCode.P)){
+            SwitchToScene("Player Customizer");
+        }
     }
     public void SwitchToScene(string sceneName){
         SceneManager.LoadScene(sceneName);

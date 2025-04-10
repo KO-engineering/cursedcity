@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Personal/Scenes/Main Game.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
+    path: Assets/Personal/Scenes/Player Customizer.unity
+    guid: c7414112167cc4657ad94dccdce11d1a
+  - enabled: 1
     path: Assets/Personal/Scenes/Car Customizer.unity
     guid: 2b1e9552b1692450590f6017b37bd578
   m_configObjects: {}
