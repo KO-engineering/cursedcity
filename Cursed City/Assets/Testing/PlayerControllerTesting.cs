@@ -25,10 +25,7 @@ public class PlayerControllerTesting : Singleton<PlayerControllerTesting>
 
     public bool allowMove = true;
     Vector3 velocity;
-    void Start()
-    {
-        KillCount.Instance.ResetKillCount();
-    }
+
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.P))
@@ -120,6 +117,7 @@ public class PlayerControllerTesting : Singleton<PlayerControllerTesting>
     public void ResetData()
     {
         PlayerPrefs.DeleteAll();
+        KillCount.Instance.ResetKillCount();
     }
 
 }
