@@ -290,7 +290,7 @@ GameObject:
   - component: {fileID: 6110733413786921524}
   m_Layer: 0
   m_Name: Truck
-  m_TagString: Untagged
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -304,7 +304,7 @@ Transform:
   m_GameObject: {fileID: 649782518221568267}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 20.31, y: 0.58, z: 23.75934}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5874114843193396766}
@@ -535,6 +535,7 @@ MonoBehaviour:
         m_CallState: 2
   player: {fileID: 0}
   playerCamera: {fileID: 0}
+  isDriving: 0
   OnExitState:
     m_PersistentCalls:
       m_Calls: []

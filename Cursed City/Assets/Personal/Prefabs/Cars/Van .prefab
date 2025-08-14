@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 8870009328557114609}
   m_Layer: 0
   m_Name: 'Van '
-  m_TagString: Untagged
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -346,6 +346,7 @@ MonoBehaviour:
         m_CallState: 2
   player: {fileID: 0}
   playerCamera: {fileID: 0}
+  isDriving: 0
   OnExitState:
     m_PersistentCalls:
       m_Calls: []
